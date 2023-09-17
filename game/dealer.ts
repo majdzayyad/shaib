@@ -29,4 +29,8 @@ export class Dealer {
     public isDeckEmpty() {
         return this.deck.remainingLength === 0;
     }
+
+    public shuffle() {
+        this.deck.shuffleRemaining();
+    }
 }

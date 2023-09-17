@@ -33,12 +33,27 @@ export class Game {
             this.playStage3(playerName, opponentName as string, chosedCard as Card);
         }
         if (this.stage === "Stage-1" && this.checkStage2()) {
+            this.dealer.shuffle();
             this.stage = "Stage-2";
         } 
         if (this.stage === "Stage-2" && this.checkStage3()) {
             this.stage = "Stage-3"
         }
         this.switchTurns(playerName);
+    }
+
+    public getPlayerStates() {
+        return Object.values(this.players).map((player) => {
+            return {
+                cards: player.hand.map((card) => {
+                    return {
+                        rank: card.rank.toString(),
+                        suit: card.suit.toString()
+                    }
+                }),
+                playerName: player.name
+            };
+        });
     }
 
     public isGameOver() {
